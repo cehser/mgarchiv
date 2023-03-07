@@ -31,7 +31,7 @@ def person(request, id):
   return HttpResponse(template.render(context, request))
 
 def ehrennadeltraeger(request):
-  ehrennadeltraeger = Person.objects.exclude(ehrennadel__isnull=True)
+  ehrennadeltraeger = Person.objects.exclude(ehrennadel__isnull=True).order_by('ehrennadel')
   template = loader.get_template('ehrennadeltraeger.html')
   context = {
     'ehrennadeltraeger': [{'jahr': jahr, 'personen':list(group)} for jahr, group in groupby(ehrennadeltraeger, lambda x: x.ehrennadel.year)]

@@ -18,10 +18,13 @@
       {% for x in ehrennadeltraeger %}
         {% for y in x.personen %}
           <tr>
-            <td><a href="/person/{{ y.id }}">{{ y }}</a></td>
-            <td>{{ x.jahr }} </td>
+            <td><a href="/person/{{ y.id }}">{{ y }}</a>{% if y.todestag %}&nbsp;†{% endif %}
+            </td>
+            {% if forloop.counter0 == 0 %}
+            <td rowspan="{{x.personen|length }}">{{ x.jahr }}</td>
+            {% endif %} 
           </tr>
-        {% endfor %}
+          {% endfor %}
       {% endfor %}
     </tbody>
   </table>
