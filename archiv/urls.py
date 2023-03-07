@@ -9,4 +9,6 @@ urlpatterns = [
   path('ehrennadeltraeger/', views.ehrennadeltraeger, name='ehrennadeltraeger'),
   path('maikoenigspaare/', views.maikoenigspaare, name='maikoenigspaare'),
   path('vorsitzende/', views.vorsitzende, name='vorsitzende'),
+
+  path('suche/', views.suche, name="suche")
 ]

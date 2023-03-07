@@ -3,6 +3,7 @@ from django.template import loader
 from itertools import groupby
 from .models import Maijahr, Person, Aemter
 from .helpers import Helpers
+from .filters import PersonFilter
 
 # Create your views here.
 
@@ -57,5 +58,13 @@ def vorsitzende(request):
   template = loader.get_template('vorsitzende.html')
   context = {
     'vorsitzende': vosis
+  }
+  return HttpResponse(template.render(context, request))
+
+def suche(request):
+  f = PersonFilter(request.GET, queryset=Person.objects.all())
+  template = loader.get_template('suche.html')
+  context = {
+    'filter': f
   }
   return HttpResponse(template.render(context, request))
