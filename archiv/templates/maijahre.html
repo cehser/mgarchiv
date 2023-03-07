@@ -1,0 +1,18 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Archiv Maigesellschaft Derichsweiler
+{% endblock %}
+
+
+{% block content %}
+
+  <h1>Jahre</h1>
+  
+  <ul>
+    {% for x in maijahre %}
+      <li><a href="/jahr/{{x.jahr}}">{{ x.jahr }}</a></li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}

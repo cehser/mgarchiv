@@ -1,0 +1,31 @@
+{% extends "master.html" %}
+
+{% block title %}
+  {{ person }} Archiv Maigesellschaft Derichsweiler
+{% endblock %}
+
+
+{% block content %}
+
+  <h1>{{ person }}</h1>
+  
+  <table id="archiv_jahr" style="margin:auto">
+    <thead><tr>
+    <th>Amt</th>
+    <th>Jahr</th>
+    </tr></thead>
+    <tbody>
+      {% for x in person.aemter_set.all %}
+        <tr>
+          <td>{{ x.get_amt_display }} </td>
+          <td>{{ x.maijahr }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% if person.ehrennadel %}
+  <p>Christoph Eßer wurde am {{person.ehrennadel|date:"j. F Y"}} die Goldene Ehrennadel der Maigesellschaft Derichsweiler verliehen.</p>
+  {% endif %}
+
+{% endblock %}

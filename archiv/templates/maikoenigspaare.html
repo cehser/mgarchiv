@@ -1,0 +1,27 @@
+{% extends "master.html" %}
+
+{% block title %}
+   Maikönigspaare - Archiv Maigesellschaft Derichsweiler
+{% endblock %}
+
+
+{% block content %}
+
+  <h1>Vorsitzende</h1>
+  
+  <table id="archiv_ent" style="margin:auto">
+    <thead><tr>
+    <th>Jahr</th>
+    <th>Maikönigspaar</th>
+    </tr></thead>
+    <tbody>
+      {% for x in maikoenigspaare %}
+        <tr>
+          <td>{{ x.jahr }}</td>
+          <td><a href="/person/{{ x.paar.0.person.id }}">{{ x.paar.0.person }}</a> und <a href="/person/{{ x.paar.1.person.id }}">{{ x.paar.1.person }}</a> </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

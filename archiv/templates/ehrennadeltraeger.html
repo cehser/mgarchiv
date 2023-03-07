@@ -1,0 +1,29 @@
+{% extends "master.html" %}
+
+{% block title %}
+  Ehrennadelträger - Archiv Maigesellschaft Derichsweiler
+{% endblock %}
+
+
+{% block content %}
+
+  <h1>Ehrennadelträger</h1>
+  
+  <table id="archiv_ent" style="margin:auto">
+    <thead><tr>
+    <th>Name</th>
+    <th>Jahr der Ehrung</th>
+    </tr></thead>
+    <tbody>
+      {% for x in ehrennadeltraeger %}
+        {% for y in x.personen %}
+          <tr>
+            <td><a href="/person/{{ y.id }}">{{ y }}</a></td>
+            <td>{{ x.jahr }} </td>
+          </tr>
+        {% endfor %}
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}

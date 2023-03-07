@@ -1,0 +1,27 @@
+{% extends "master.html" %}
+
+{% block title %}
+   Vorsitzende - Archiv Maigesellschaft Derichsweiler
+{% endblock %}
+
+
+{% block content %}
+
+  <h1>Vorsitzende</h1>
+  
+  <table id="archiv_ent" style="margin:auto">
+    <thead><tr>
+    <th>Name</th>
+    <th>Jahre</th>
+    </tr></thead>
+    <tbody>
+      {% for x in vorsitzende %}
+        <tr>
+          <td><a href="/person/{{ x.person.id }}">{{ x.person }}</a></td>
+          <td>{{ x.jahre_str }} </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
