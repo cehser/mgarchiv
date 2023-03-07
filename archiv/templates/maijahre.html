@@ -9,10 +9,10 @@
 
   <h1>Jahre</h1>
   
-  <ul>
+  <div class="list-group">
     {% for x in maijahre %}
-      <li><a href="/jahr/{{x.jahr}}">{{ x.jahr }}</a></li>
+      <a  class="list-group-item  list-group-item-action" href="/jahr/{{x.jahr}}">{{ x.jahr }}</a>
     {% endfor %}
-  </ul>
+  </div>
 
 {% endblock %}

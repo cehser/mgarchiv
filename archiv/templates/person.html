@@ -9,7 +9,7 @@
 
   <h1>{{ person }}</h1>
   
-  <table id="archiv_jahr" style="margin:auto">
+  <table class="table">
     <thead><tr>
     <th>Amt</th>
     <th>Jahr</th>
@@ -25,7 +25,7 @@
   </table>
 
   {% if person.ehrennadel %}
-  <p>Christoph Eßer wurde am {{person.ehrennadel|date:"j. F Y"}} die Goldene Ehrennadel der Maigesellschaft Derichsweiler verliehen.</p>
+  <p>{{ person }} wurde am {{person.ehrennadel|date:"j. F Y"}} die Goldene Ehrennadel der Maigesellschaft Derichsweiler verliehen.</p>
   {% endif %}
 
 {% endblock %}

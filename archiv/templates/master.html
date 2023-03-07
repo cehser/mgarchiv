@@ -1,21 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
 <head>
   <title>{% block title %}{% endblock %}</title>
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+  <div class="container">
+    <ul class="nav">
+      <li class="nav-item"><a class="nav-link"  href="/">Übersicht</a></li>
+      <li class="nav-item"><a class="nav-link"  href="/maikoenigspaare">Maikönigspaare</a></li>
+      <li class="nav-item"><a class="nav-link"  href="/ehrennadeltraeger">Ehrennadelträger</a></li>
+      <li class="nav-item"><a class="nav-link"  href="/vorsitzende">Vorsitzende</a></li>
+      <li class="nav-item"><a class="nav-link"  href="/suche">Suche</a></li>
+    </ul>
 
-  <ul id="menu"><h1> Menü</h1>
-    <li><a href="/">Übersicht</a></li>
-    <li><a href="/maikoenigspaare">Maikönigspaare</a></li>
-    <li><a href="/ehrennadeltraeger">Ehrennadelträger</a></li>
-    <li><a href="/vorsitzende">Vorsitzende</a></li>
-    <li><a href="/suche">Suche</a></li>
-  </ul>
 
-
-{% block content %}
-{% endblock %}
-
+    {% block content %}
+    {% endblock %}
+  </div>
 </body>
 </html>
