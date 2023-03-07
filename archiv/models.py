@@ -35,6 +35,88 @@ class Maijahr(models.Model):
 
 
 class Aemter(models.Model):
+  AEMTER_GROUPS = [
+    {
+      'Name': 'Maikönig',
+      'Aemter': ['MK'],
+    },
+    {
+      'Name': 'Maikönigin',
+      'Aemter': ['MN'],
+    },
+    {
+      'Name': 'Vorsitzender',
+      'Aemter': ['VS'],
+    },
+    {
+      'Name': '2. Vorsitzender',
+      'Aemter': ['VS2'],
+    },
+    {
+      'Name': '1. Schriftführer', 
+      'Aemter': ['SF1'],
+    },
+    {
+      'Name': '1. Kassierer', 
+      'Aemter': ['KS1'],
+    },
+    {
+      'Name': '2. Schriftführer', 
+      'Aemter': ['SF2'],
+    },
+    {
+      'Name': '2. Kassierer', 
+      'Aemter': ['KS2'],
+    },
+    {
+      'Name': '3. Schriftführer', 
+      'Aemter': ['SF3'],
+    },
+    {
+      'Name': '3. Kassierer', 
+      'Aemter': ['KS3'],
+    },
+    {
+      'Name': 'Maihauptmann', 
+      'Aemter': ['MH'],
+    },
+    {
+      'Name': 'Ehrenposten EV', 
+      'Aemter': ['EPEV'],
+    },
+    {
+      'Name': 'Sonderposten EV', 
+      'Aemter': ['SPEV'],
+    },
+    {
+      'Name': 'Vorstand', 
+      'Aemter': ['MK', 'VS', 'VS2', 'SF1', 'SF2', 'SF3', 'KS1', 'KS2', 'KS3', 'EPEV', 'SPEV', 'HR', 'VD'],
+    },
+    {
+      'Name': 'Reiter', 
+      'Aemter': ['MH', 'RT'],
+    },
+    {
+      'Name': 'Hauptremmel', 
+      'Aemter': ['HR'],
+    },
+    {
+      'Name': 'Mairemmel', 
+      'Aemter': ['HR', 'MR'],
+    },
+    {
+      'Name': 'Baumträger', 
+      'Aemter': ['BT'],
+    },
+    {
+      'Name': 'Cheftechniker', 
+      'Aemter': ['CT'],
+    },
+    {
+      'Name': 'Techniker', 
+      'Aemter': ['TR'],
+    },
+  ]
   AEMTER_CHOICES = [
     ("MK", "Maikönig"),
     ("MN", "Maikönigin"),

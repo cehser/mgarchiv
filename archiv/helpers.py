@@ -9,3 +9,6 @@ class Helpers:
 
   def ranges_to_strs(ranges):
     return [str(a) if a==b  else str(a) + '-' +str(+b)  for a,b in ranges]
+  
+  def list_to_range_strs(list):
+    return Helpers.ranges_to_strs(Helpers.to_ranges(list))

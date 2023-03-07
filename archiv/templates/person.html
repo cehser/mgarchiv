@@ -15,11 +15,13 @@
     <th>Jahr</th>
     </tr></thead>
     <tbody>
-      {% for x in person.aemter_set.all %}
+      {% for x in aemter %}
+      {% if x.jahre %}
         <tr>
-          <td>{{ x.get_amt_display }} </td>
-          <td>{{ x.maijahr }}</td>
+          <td>{{ x.amt }} </td>
+          <td>{{ x.jahre }}</td>
         </tr>
+        {% endif %}
       {% endfor %}
     </tbody>
   </table>

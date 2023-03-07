@@ -25,9 +25,13 @@ def jahre(request):
 
 def person(request, id):
   person = Person.objects.get(id=id)
+  #aemter = Aemter.objects.filter(person_id=id).order_by('amt')
+  #aemter = [{'amt': x['Name'],'jahre':person.aemter_set.filter(amt__in=x['Aemter'])} for x in Aemter.AEMTER_GROUPS]
+  aemter = [{'amt': x['Name'],'jahre':', '.join(Helpers.list_to_range_strs([jahr.maijahr.jahr for jahr in  person.aemter_set.filter(amt__in=x['Aemter'])]))} for x in Aemter.AEMTER_GROUPS]
   template = loader.get_template('person.html')
   context = {
     'person': person,
+    'aemter': aemter,
   }
   return HttpResponse(template.render(context, request))
 
