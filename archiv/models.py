@@ -90,7 +90,7 @@ class Aemter(models.Model):
     },
     {
       'Name': 'Vorstand', 
-      'Aemter': ['MK', 'VS', 'VS2', 'SF1', 'SF2', 'SF3', 'KS1', 'KS2', 'KS3', 'EPEV', 'SPEV', 'HR', 'VD'],
+      'Aemter': ['MK', 'VS', 'VS2', 'SF1', 'SF2', 'SF3', 'KS1', 'KS2', 'KS3', 'MH','EPEV', 'SPEV', 'HR', 'VD'],
     },
     {
       'Name': 'Reiter', 
