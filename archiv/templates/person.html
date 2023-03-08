@@ -26,6 +26,10 @@
     </tbody>
   </table>
 
+  {% if person.ehrenmitglied_ab %}
+  <p>{{ person }} wurde im Jahr {{person.ehrenmitglied_ab|date:"Y"}} zum Ehrennmitglied der Maigesellschaft Derichsweiler ernannt.</p>
+  {% endif %}
+
   {% if person.ehrennadel %}
   <p>{{ person }} wurde am {{person.ehrennadel|date:"j. F Y"}} die Goldene Ehrennadel der Maigesellschaft Derichsweiler verliehen.</p>
   {% endif %}
