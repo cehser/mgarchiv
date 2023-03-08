@@ -1,24 +1,27 @@
 {% extends "master.html" %}
 
 {% block title %}
-  Maijahr {{ maijahr.jahr }} Archiv Maigesellschaft Derichsweiler
+  Jahr {{ maijahr.jahr }} Archiv Maigesellschaft Derichsweiler
 {% endblock %}
 
 
 {% block content %}
-  <h1>Maijahr {{ maijahr.jahr }}</h1>
-  
+  <h1>Jahr {{ maijahr.jahr }}</h1>
   <table class="table table-sm">
     <thead><tr>
     <th>Amt</th>
     <th>Person</th>
     </tr></thead>
     <tbody>
-      {% for x in maijahr.aemter_set.all %}
-        <tr>
-          <td>{{ x.get_amt_display }} </td>
-          <td><a href="/person/{{ x.person.id }}">{{ x.person }}</a></td>
-        </tr>
+      {% for x in aemter %}
+        {% for p in x.personen %}
+          <tr>
+            {% if forloop.counter0 == 0 %}
+            <td rowspan="{{x.personen|length }}">{{p.get_amt_display}}</td>
+            {% endif %}
+            <td><a href="/person/{{ p.person.id }}">{{ p.person }}</a></td>
+          </tr>
+        {% endfor %}
       {% endfor %}
     </tbody>
   </table>

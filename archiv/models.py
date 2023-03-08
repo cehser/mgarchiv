@@ -131,13 +131,13 @@ class Aemter(models.Model):
     ("MH", "Maihauptmann"),
     ("SPEV", "Sonderposten EV"),
     ("EPEV", "Ehrenposten EV"),
+    ("VD", "Vorstand"),
     ("RT", "Reiter"),
     ("MR", "Mairemmel"),
     ("HR", "Hauptremmel"),
     ("BT", "Baumträger"),
     ("CT", "Cheftechniker"),
     ("TR", "Techniker"),
-    ("VD", "Vorstand"),
   ]
   person      = models.ForeignKey(Person, on_delete=models.CASCADE)
   maijahr     = models.ForeignKey(Maijahr, on_delete=models.CASCADE)

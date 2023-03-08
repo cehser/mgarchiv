@@ -4,14 +4,21 @@ from itertools import groupby
 from .models import Maijahr, Person, Aemter
 from .helpers import Helpers
 from .filters import PersonFilter
+from datetime import datetime
 
 # Create your views here.
 
 def jahr(request, jahr):
   maijahr = Maijahr.objects.get(jahr=jahr)
+  aemter= [{'amt': amt, 'personen':list(group)} for amt, group in groupby(maijahr.aemter_set.order_by('amt'), lambda x: x.amt)]
+
+  order = [key for (key, value) in Aemter.AEMTER_CHOICES]
+  aemter.sort(key= lambda x: order.index(x['amt']))
+
   template = loader.get_template('maijahr.html')
   context = {
-    'maijahr': maijahr,
+    'maijahr': maijahr, 
+    'aemter': aemter,
   }
   return HttpResponse(template.render(context, request))
 
@@ -27,7 +34,17 @@ def person(request, id):
   person = Person.objects.get(id=id)
   #aemter = Aemter.objects.filter(person_id=id).order_by('amt')
   #aemter = [{'amt': x['Name'],'jahre':person.aemter_set.filter(amt__in=x['Aemter'])} for x in Aemter.AEMTER_GROUPS]
-  aemter = [{'amt': x['Name'],'jahre':', '.join(Helpers.list_to_range_strs([jahr.maijahr.jahr for jahr in  person.aemter_set.filter(amt__in=x['Aemter'])]))} for x in Aemter.AEMTER_GROUPS]
+  
+  aemter_maijahre = [{'amt': x['Name'],'jahre':[amt.maijahr for amt in person.aemter_set.filter(amt__in=x['Aemter'])]} for x in Aemter.AEMTER_GROUPS]
+  
+  if person.ehrenmitglied_ab:
+    ehrenmitglied_jahre = Maijahr.objects.filter(jahr__gte=person.ehrenmitglied_ab.year).filter(jahr__lte=(person.todestag or datetime.today()).year)
+    aemter_maijahre = [x | {'jahre': x['jahre'] if x['amt']  != 'Vorstand' else list(x['jahre']) + list(ehrenmitglied_jahre )} for x in aemter_maijahre]
+
+
+  aemter = [x | {'jahre': ', '.join(Helpers.list_to_range_strs([jahr.jahr for jahr in x['jahre']]))}  for x in aemter_maijahre]
+
+  
   template = loader.get_template('person.html')
   context = {
     'person': person,
