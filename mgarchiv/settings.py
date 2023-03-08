@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_filters',
     'archiv',
-    'bootstrap5'
 ]
 
 MIDDLEWARE = [
