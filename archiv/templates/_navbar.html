@@ -1,0 +1,27 @@
+{% url 'jahre' as home_url %}
+{% url 'maikoenigspaare' as maikoenigspaare_url %}
+{% url 'ehrennadeltraeger' as ehrennadeltraeger_url %}
+{% url 'vorsitzende' as vorsitzende_url %}
+{% url 'suche' as suche_url %}
+
+<nav class="navbar  navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">Archiv</span>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link {% if request.path == home_url %} active {%endif%}" href="{{home_url}}">Übersicht</a></li>
+        <li class="nav-item"><a class="nav-link {% if request.path == maikoenigspaare_url %} active {%endif%}" href="{{maikoenigspaare_url}}">Maikönigspaare</a></li>
+        <li class="nav-item"><a class="nav-link {% if request.path == ehrennadeltraeger_url %} active {%endif%}" href="{{ehrennadeltraeger_url}}">Ehrennadelträger</a></li>
+        <li class="nav-item"><a class="nav-link {% if request.path == vorsitzende_url %} active {%endif%}" href="{{vorsitzende_url}}">Vorsitzende</a></li>
+        <li class="nav-item"><a class="nav-link {% if request.path == suche_url %} active {%endif%}" href="{{suche_url}}">Suche</a></li>
+      </ul>
+    </div>
+    <form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Suche" aria-label="Suche">
+      <button class="btn btn-outline-primary" type="submit">Suche</button>
+    </form>
+  </div>
+</nav>
