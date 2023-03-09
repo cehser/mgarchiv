@@ -4,7 +4,14 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
-    ports:
-      - "8000:8000"
     env_file:
       - ./.env.dev
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./archiv/static:/usr/share/nginx/html
+    ports:
+      - 8000:80
+    depends_on:
+      - web
