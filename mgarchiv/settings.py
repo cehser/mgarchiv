@@ -133,4 +133,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:8000',
     'http://127.0.0.1:8000',
+    'https://archiv2023.maigesellschaft-derichsweiler.de',
+    'https://archiv.maigesellschaft-derichsweiler.de',
 ]
