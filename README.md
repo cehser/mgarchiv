@@ -15,6 +15,7 @@ cp .env.sample .env.prod
 ### Build
 ```sh
 docker compose up  --build
+docker compose run web python manage.py collectstatic
 ```
 
 ### Datenbank 
