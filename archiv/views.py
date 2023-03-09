@@ -6,6 +6,7 @@ from .helpers import Helpers
 from .filters import PersonFilter
 from datetime import datetime
 from django.db.models.functions import Concat
+from django.shortcuts import redirect
 
 
 # Create your views here.
@@ -86,14 +87,19 @@ def vorsitzende(request):
 
 def suche(request):
   q = request.GET.get('q')
-  q_split = q.split(' ')
-  personen =  Person.objects.annotate(fullname=Concat('vorname','nachname','suchnamen')).all()
-  for q1 in q_split:
-    personen =  personen.filter(fullname__icontains=q1)  
 
-  template = loader.get_template('suche.html')
-  context = {
-    'q': q,
-    'ergebnis': personen,
-  }
-  return HttpResponse(template.render(context, request))
+  try:
+    Maijahr.objects.get (jahr=q)
+    return redirect(jahr, q)
+  except:
+    q_split = q.split(' ')
+    personen =  Person.objects.annotate(fullname=Concat('vorname','nachname','suchnamen')).all()
+    for q1 in q_split:
+      personen =  personen.filter(fullname__icontains=q1)  
+
+    template = loader.get_template('suche.html')
+    context = {
+      'q': q,
+      'ergebnis': personen,
+    }
+    return HttpResponse(template.render(context, request))
