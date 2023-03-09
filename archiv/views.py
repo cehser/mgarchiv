@@ -13,6 +13,7 @@ from django.shortcuts import redirect
 
 def jahr(request, jahr):
   maijahr = Maijahr.objects.get(jahr=jahr)
+  maijahre = Maijahr.objects.all()
   aemter= [{'amt': amt, 'personen':list(group)} for amt, group in groupby(maijahr.aemter_set.order_by('amt'), lambda x: x.amt)]
 
   order = [key for (key, value) in Aemter.AEMTER_CHOICES]
@@ -21,6 +22,7 @@ def jahr(request, jahr):
   template = loader.get_template('maijahr.html')
   context = {
     'maijahr': maijahr, 
+    'maijahre' : maijahre,
     'aemter': aemter,
   }
   return HttpResponse(template.render(context, request))

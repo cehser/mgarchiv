@@ -4,9 +4,13 @@
   Jahr {{ maijahr.jahr }} Archiv Maigesellschaft Derichsweiler
 {% endblock %}
 
-
 {% block content %}
   <h2>Jahr {{ maijahr.jahr }}</h2>
+  <div class="list-group list-group-horizontal position-relative overflow-auto">
+    {% for j in maijahre %}
+      <a href="{% url 'jahr' j.jahr %}" id="link{{j.jahr}}" class="list-group-item list-group-item-action {% if j.jahr == maijahr.jahr %} active {% endif %}">{{ j.jahr }}</a>
+    {% endfor %}
+  </div>
   <table class="table table-sm">
     <thead><tr>
     <th>Amt</th>
@@ -25,5 +29,11 @@
       {% endfor %}
     </tbody>
   </table>
-
+  <script type="application/javascript">
+    document.getElementById("link{{maijahr.jahr}}").scrollIntoView({
+      behavior: "auto",
+      block: "end",
+      inline: "center"
+    });
+   </script>
 {% endblock %}
