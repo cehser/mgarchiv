@@ -6,12 +6,8 @@
 
 
 {% block content %}
-  <h2>Suche</h2>
-  <form method="get">
-      {{ filter.form.as_p }}
-      <input type="submit" />
-  </form>
-  {% for person in filter.qs %}
+  <h2>Suche nach „{{ q }}“</h2>
+  {% for person in ergebnis %}
   <a href="/person/{{ person.id }}">{{ person }}</a><br />
   {% endfor %}
 {% endblock %}
