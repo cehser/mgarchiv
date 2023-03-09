@@ -87,7 +87,7 @@ def vorsitzende(request):
 def suche(request):
   q = request.GET.get('q')
   q_split = q.split(' ')
-  personen =  Person.objects.annotate(fullname=Concat('vorname','nachname','nachname_heirat')).all()
+  personen =  Person.objects.annotate(fullname=Concat('vorname','nachname','suchnamen')).all()
   for q1 in q_split:
     personen =  personen.filter(fullname__icontains=q1)  
 

@@ -11,6 +11,7 @@ class PersonenInline(admin.TabularInline):
 
 class PersonAdmin(admin.ModelAdmin):
   inlines = [AemterInline]
+  search_fields = ['vorname','nachname', 'suchnamen']
 
 class MaijahrAdmin(admin.ModelAdmin):
   inlines = [AemterInline]

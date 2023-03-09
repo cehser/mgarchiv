@@ -4,13 +4,14 @@ from django.db import models
 class Person(models.Model):
   vorname           = models.CharField(max_length=255)
   nachname          = models.CharField(max_length=255)
-  nachname_heirat   = models.CharField(max_length=255, blank=True, null=True)
+  suchnamen         = models.CharField(max_length=255, blank=True, null=True)
   ehrennadel        = models.DateField(blank=True, null=True)
   todestag          = models.DateField(blank=True, null=True)
   ehrenmitglied_ab  = models.DateField(blank=True, null=True)
 
   class Meta:
     ordering = ['nachname', 'vorname']
+    verbose_name_plural = "Personen"
 
   def __str__(self):
       return self.vorname + ' ' + self.nachname
@@ -28,6 +29,7 @@ class Maijahr(models.Model):
 
   class Meta:
     ordering = ['jahr']
+    verbose_name_plural = "Maijahre"
 
 
   def __str__(self):
