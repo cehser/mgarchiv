@@ -18,7 +18,18 @@
     </tr></thead>
     <tbody>
       {% for x in aemter %}
+        {% if x.amt == 'VD' %}
+          {%for e in ehrenmitglieder %}
+            <tr>
+              {% if forloop.counter0 == 0 %}
+              <td rowspan="{{ehrenmitglieder|length }}">Ehrenmitglied</td>
+              {% endif %}
+              <td><a href="/person/{{ e.id }}">{{ e }}</a></td>
+            </tr>
+          {% endfor %}
+        {% endif %}
         {% for p in x.personen %}
+          
           <tr>
             {% if forloop.counter0 == 0 %}
             <td rowspan="{{x.personen|length }}">{{p.get_amt_display}}</td>
@@ -27,6 +38,14 @@
           </tr>
         {% endfor %}
       {% endfor %}
+      {% if keinVorstand %} {%for e in ehrenmitglieder %}
+      <tr>
+        {% if forloop.counter0 == 0 %}
+        <td rowspan="{{ehrenmitglieder|length }}">Ehrenmitglied</td>
+        {% endif %}
+        <td><a href="/person/{{ e.id }}">{{ e }}</a></td>
+      </tr>
+      {% endfor %}{% endif %}
     </tbody>
   </table>
   <script type="application/javascript">

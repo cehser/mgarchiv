@@ -6,7 +6,10 @@ from .helpers import Helpers
 from .filters import PersonFilter
 from datetime import datetime
 from django.db.models.functions import Concat
+from django.db.models import Q
+
 from django.shortcuts import redirect
+
 
 
 # Create your views here.
@@ -15,15 +18,20 @@ def jahr(request, jahr):
   maijahr = Maijahr.objects.get(jahr=jahr)
   maijahre = Maijahr.objects.all()
   aemter= [{'amt': amt, 'personen':list(group)} for amt, group in groupby(maijahr.aemter_set.order_by('amt'), lambda x: x.amt)]
+  ehrenmitglieder = Person.objects.filter(ehrenmitglied_ab__lte=str(maijahr.jahr)+'-12-31').filter(Q(todestag__isnull=True) | Q(todestag__gte=str(maijahr.jahr)+'-01-01')).order_by('ehrenmitglied_ab')
 
   order = [key for (key, value) in Aemter.AEMTER_CHOICES]
   aemter.sort(key= lambda x: order.index(x['amt']))
+
+  novd = not any(ele['amt'] == 'VD' for ele in aemter)
 
   template = loader.get_template('maijahr.html')
   context = {
     'maijahr': maijahr, 
     'maijahre' : maijahre,
     'aemter': aemter,
+    'ehrenmitglieder': ehrenmitglieder,
+    'keinVorstand': novd,
   }
   return HttpResponse(template.render(context, request))
 
@@ -46,14 +54,13 @@ def person(request, id):
     ehrenmitglied_jahre = Maijahr.objects.filter(jahr__gte=person.ehrenmitglied_ab.year).filter(jahr__lte=(person.todestag or datetime.today()).year)
     aemter_maijahre = [x | {'jahre': x['jahre'] if x['amt']  != 'Vorstand' else list(x['jahre']) + list(ehrenmitglied_jahre )} for x in aemter_maijahre]
 
-
   aemter = [x | {'jahre': ', '.join(Helpers.list_to_range_strs([jahr.jahr for jahr in x['jahre']]))}  for x in aemter_maijahre]
 
-  
   template = loader.get_template('person.html')
   context = {
     'person': person,
     'aemter': aemter,
+    'ehrennadel_maifest': person.ehrennadel.month == 5 and person.ehrennadel.day == 1,
   }
   return HttpResponse(template.render(context, request))
 

@@ -8,7 +8,9 @@
 {% block content %}
 
   <h2>{{ person }}</h2>
-  
+  {% if person.todestag %}
+    <p>† {{person.todestag|date:"d.m.Y"}}  </p>
+  {% endif %}
   <table class="table">
     <thead><tr>
     <th>Amt</th>
@@ -27,11 +29,16 @@
   </table>
 
   {% if person.ehrenmitglied_ab %}
-  <p>{{ person }} wurde im Jahr {{person.ehrenmitglied_ab|date:"Y"}} zum Ehrennmitglied der Maigesellschaft Derichsweiler ernannt.</p>
+  <p>{{ person }} wurde im Jahr {{person.ehrenmitglied_ab|date:"Y"}} zum Ehrenmitglied der Maigesellschaft Derichsweiler ernannt.</p>
   {% endif %}
 
   {% if person.ehrennadel %}
-  <p>{{ person }} wurde am {{person.ehrennadel|date:"j. F Y"}} die Goldene Ehrennadel der Maigesellschaft Derichsweiler verliehen.</p>
+  <p>{{ person }} wurde 
+      {% if ehrennadel_maifest %} 
+        auf dem Maifest {{person.ehrennadel|date:"Y"}} 
+      {% else %}
+        am {{person.ehrennadel|date:"j. F Y"}} 
+      {% endif %} die Goldene Ehrennadel der Maigesellschaft Derichsweiler verliehen.</p>
   {% endif %}
 
 {% endblock %}
