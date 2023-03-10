@@ -60,7 +60,7 @@ def person(request, id):
   context = {
     'person': person,
     'aemter': aemter,
-    'ehrennadel_maifest': person.ehrennadel.month == 5 and person.ehrennadel.day == 1,
+    'ehrennadel_maifest': person.ehrennadel and person.ehrennadel.month == 5 and person.ehrennadel.day == 1,
   }
   return HttpResponse(template.render(context, request))
 
