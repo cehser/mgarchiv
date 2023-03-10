@@ -7,7 +7,9 @@
 
 {% block content %}
   <h2>Suche nach „{{ q }}“</h2>
-  {% for person in ergebnis %}
-  <a href="/person/{{ person.id }}">{{ person }}</a><br />
-  {% endfor %}
+  <div class="list-group">
+    {% for person in ergebnis %}
+    <a class="list-group-item list-group-item-action" href="/person/{{ person.id }}">{{ person }}</a>
+    {% endfor %}
+  </div>
 {% endblock %}

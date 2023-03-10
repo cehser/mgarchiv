@@ -13,6 +13,11 @@ from django.shortcuts import redirect
 
 
 # Create your views here.
+def home(request):
+  template = loader.get_template('home.html')
+  context = {
+  }
+  return HttpResponse(template.render(context, request))
 
 def jahr(request, jahr):
   maijahr = Maijahr.objects.get(jahr=jahr)
