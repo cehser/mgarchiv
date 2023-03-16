@@ -3,10 +3,12 @@
 {% url 'ehrennadeltraeger' as ehrennadeltraeger_url %}
 {% url 'vorsitzende' as vorsitzende_url %}
 {% url 'suche' as suche_url %}
+{% load static %}
 
 <nav class="navbar navbar-expand-md">
   <div class="container-fluid">
     <a class="navbar-brand mb-0 h1 order-1" href="{{home_url}}">Archiv</a>
+    <div class="p-2"><img id='schleife' height="50%" src="{% static 'img/schleife.png' %}"></div>
     <button class="navbar-toggler order-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

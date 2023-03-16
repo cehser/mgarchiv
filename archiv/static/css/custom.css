@@ -61,12 +61,18 @@ a {
   --bs-list-group-active-border-color: var(--mg-gruen);;
 }
 
-
-
 .bi {
   width: 1em;
   height: 1em;
   fill: currentcolor;
+}
+
+img#schleife {
+  width: 75px;
+}
+
+[data-bs-theme="dark"] img#schleife {
+  content: url(/static/img/schleife-light.png);
 }
 
 [data-bs-theme="dark"] a {
