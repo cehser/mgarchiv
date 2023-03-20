@@ -11,43 +11,63 @@
       <a href="{% url 'jahr' j.jahr %}" id="link{{j.jahr}}" class="list-group-item list-group-item-action {% if j.jahr == maijahr.jahr %} active {% endif %}">{{ j.jahr }}</a>
     {% endfor %}
   </div>
-  <table class="table table-sm">
-    <thead><tr>
-    <th>Amt</th>
-    <th>Person</th>
-    </tr></thead>
-    <tbody>
-      {% for x in aemter %}
-        {% if x.amt == 'VD' %}
-          {%for e in ehrenmitglieder %}
+  <div class="container">
+    <div class="row gap-3">
+      <div class="col order-md-2">
+        <div class="d-flex flex-row flex-md-column align-items-center gap-3">
+          {% if maijahr.url_foto_maikoenigspaar %}
+          <div class="flex-grow-1" style="min-width:40%;">
+            <img src="{{ maijahr.url_foto_maikoenigspaar }}" class="img-fluid" style="max-height: 60vh;">
+          </div>
+          {% endif %}
+          {% if maijahr.url_vorstandsfoto %}
+          <div class="flex-grow-1" style="min-width:40%;">
+            <img src="{{ maijahr.url_vorstandsfoto }}" class="img-fluid" style="max-height: 60vh;">
+          </div>
+        {% endif %}
+        </div> 
+      </div>
+      <div class="col-12 col-md-6 order-md-1">
+        <table class="table table-sm">
+          <thead><tr>
+          <th>Amt</th>
+          <th>Person</th>
+          </tr></thead>
+          <tbody>
+            {% for x in aemter %}
+              {% if x.amt == 'VD' %}
+                {%for e in ehrenmitglieder %}
+                  <tr>
+                    {% if forloop.counter0 == 0 %}
+                    <td rowspan="{{ehrenmitglieder|length }}">Ehrenmitglied</td>
+                    {% endif %}
+                    <td><a href="/person/{{ e.id }}">{{ e }}</a></td>
+                  </tr>
+                {% endfor %}
+              {% endif %}
+              {% for p in x.personen %}
+                
+                <tr>
+                  {% if forloop.counter0 == 0 %}
+                  <td rowspan="{{x.personen|length }}">{{p.get_amt_display}}</td>
+                  {% endif %}
+                  <td><a href="/person/{{ p.person.id }}">{{ p.person }}</a></td>
+                </tr>
+              {% endfor %}
+            {% endfor %}
+            {% if keinVorstand %} {%for e in ehrenmitglieder %}
             <tr>
               {% if forloop.counter0 == 0 %}
               <td rowspan="{{ehrenmitglieder|length }}">Ehrenmitglied</td>
               {% endif %}
               <td><a href="/person/{{ e.id }}">{{ e }}</a></td>
             </tr>
-          {% endfor %}
-        {% endif %}
-        {% for p in x.personen %}
-          
-          <tr>
-            {% if forloop.counter0 == 0 %}
-            <td rowspan="{{x.personen|length }}">{{p.get_amt_display}}</td>
-            {% endif %}
-            <td><a href="/person/{{ p.person.id }}">{{ p.person }}</a></td>
-          </tr>
-        {% endfor %}
-      {% endfor %}
-      {% if keinVorstand %} {%for e in ehrenmitglieder %}
-      <tr>
-        {% if forloop.counter0 == 0 %}
-        <td rowspan="{{ehrenmitglieder|length }}">Ehrenmitglied</td>
-        {% endif %}
-        <td><a href="/person/{{ e.id }}">{{ e }}</a></td>
-      </tr>
-      {% endfor %}{% endif %}
-    </tbody>
-  </table>
+            {% endfor %}{% endif %}
+          </tbody>
+        </table>
+      </div> 
+    </div>
+  </div>
   <script type="application/javascript">
     document.getElementById("link{{maijahr.jahr}}").scrollIntoView({
       behavior: "auto",
