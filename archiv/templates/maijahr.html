@@ -14,23 +14,27 @@
   <div class="container">
     <div class="row gap-3">
       <div class="col order-md-2">
-        <div class="d-flex flex-row flex-md-column align-items-center gap-3">
+        <div class="d-flex flex-row flex-md-column align-items-center gap-3 gallery">
           {% if maijahr.url_foto_maikoenigspaar %}
-          <div data-bs-theme="dark" class="flex-grow-1 card text-center" style="min-width:40%; color: var(--bs-body-color)">
-            <img src="{{ maijahr.url_foto_maikoenigspaar }}" class="card-img" style="max-height: 60vh;">
-            <div class="card-img-overlay bg-dark rounded-bottom"  style="--bs-bg-opacity: .7; top:auto; border-top-left-radius: 0; border-top-right-radius: 0;">
-              <p class="card-text">Maikönigspaar Philipp Kurth und Linda Schwarzenberg</p>
+          <a href="{{ maijahr.url_foto_maikoenigspaar }}">
+            <div data-bs-theme="dark" class="flex-grow-1 card text-center" style="min-width:40%; color: var(--bs-body-color)">
+              <img src="{{ maijahr.url_foto_maikoenigspaar }}" class="card-img" style="max-height: 60vh;" title="Maikönigspaar Philipp Kurth und Linda Schwarzenberg">
+              <div class="card-img-overlay bg-dark rounded-bottom"  style="--bs-bg-opacity: .7; top:auto; border-top-left-radius: 0; border-top-right-radius: 0;">
+                <p class="card-text">Maikönigspaar Philipp Kurth und Linda Schwarzenberg</p>
+              </div>
             </div>
-          </div>
+          </a>
           {% endif %}
           {% if maijahr.url_vorstandsfoto %}
-          <div data-bs-theme="dark" class="flex-grow-1 card text-center" style="min-width:40%; color: var(--bs-body-color)">
-            <img src="{{ maijahr.url_vorstandsfoto }}" class="card-img" style="max-height: 60vh;">
-            <div class="card-img-overlay bg-dark" style="--bs-bg-opacity: .7; top:auto; border-top-left-radius: 0; border-top-right-radius: 0;">
-              <p class="card-text">Vorstand im Jahr {{ maijahr.jahr }}</p>
+          <a href="{{ maijahr.url_vorstandsfoto }}">
+            <div data-bs-theme="dark" class="flex-grow-1 card text-center" style="min-width:40%; color: var(--bs-body-color)">
+              <img src="{{ maijahr.url_vorstandsfoto }}" class="card-img" style="max-height: 60vh;" title="Vorstand im Jahr {{ maijahr.jahr }}">
+              <div class="card-img-overlay bg-dark" style="--bs-bg-opacity: .7; top:auto; border-top-left-radius: 0; border-top-right-radius: 0;">
+                <p class="card-text">Vorstand im Jahr {{ maijahr.jahr }}</p>
+              </div>
             </div>
-          </div>
-        {% endif %}
+          </a>
+          {% endif %}
         </div> 
       </div>
       <div class="col-12 col-md-6 order-md-1">
