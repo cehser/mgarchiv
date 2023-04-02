@@ -28,12 +28,21 @@ def jahr(request, jahr):
   order = [key for (key, value) in Aemter.AEMTER_CHOICES]
   aemter.sort(key= lambda x: order.index(x['amt']))
 
+  try:
+    maikoenig   = [x['personen'] for x in aemter if x['amt']=='MK'][0][0].person
+    maikoenigin = [x['personen'] for x in aemter if x['amt']=='MN'][0][0].person
+  except IndexError:
+    maikoenig = None
+    maikoenigin = None
+
   novd = not any(ele['amt'] == 'VD' for ele in aemter)
 
   template = loader.get_template('maijahr.html')
   context = {
     'maijahr': maijahr, 
     'maijahre' : maijahre,
+    'maikoenig': maikoenig,
+    'maikoenigin': maikoenigin,
     'aemter': aemter,
     'ehrenmitglieder': ehrenmitglieder,
     'keinVorstand': novd,

@@ -16,24 +16,24 @@
       <div class="col order-md-2">
         <div class="d-flex flex-row flex-md-column align-items-center gap-3 gallery">
           {% if maijahr.url_foto_maikoenigspaar %}
-          <a href="{{ maijahr.url_foto_maikoenigspaar }}">
             <div data-bs-theme="dark" class="flex-grow-1 card text-center" style="min-width:40%; color: var(--bs-body-color)">
-              <img src="{{ maijahr.url_foto_maikoenigspaar }}" class="card-img" style="max-height: 60vh;" title="Maikönigspaar Philipp Kurth und Linda Schwarzenberg">
+              <a href="{{ maijahr.url_foto_maikoenigspaar }}">
+                <img src="{{ maijahr.url_foto_maikoenigspaar }}" class="card-img" style="max-height: 60vh;" title="Maikönigspaar {{ maikoenig }} und {{ maikoenigin }}">
+              </a>
               <div class="card-img-overlay bg-dark rounded-bottom"  style="--bs-bg-opacity: .7; top:auto; border-top-left-radius: 0; border-top-right-radius: 0;">
-                <p class="card-text">Maikönigspaar Philipp Kurth und Linda Schwarzenberg</p>
+                <p class="card-text">Maikönigspaar <a href="/person/{{ maikoenig.id }}">{{ maikoenig }}</a> und <a href="/person/{{ maikoenigin.id }}">{{ maikoenigin }}</a></p>
               </div>
             </div>
-          </a>
           {% endif %}
           {% if maijahr.url_vorstandsfoto %}
-          <a href="{{ maijahr.url_vorstandsfoto }}">
             <div data-bs-theme="dark" class="flex-grow-1 card text-center" style="min-width:40%; color: var(--bs-body-color)">
-              <img src="{{ maijahr.url_vorstandsfoto }}" class="card-img" style="max-height: 60vh;" title="Vorstand im Jahr {{ maijahr.jahr }}">
+              <a href="{{ maijahr.url_vorstandsfoto }}">
+                <img src="{{ maijahr.url_vorstandsfoto }}" class="card-img" style="max-height: 60vh;" title="Vorstand im Jahr {{ maijahr.jahr }}">
+              </a>
               <div class="card-img-overlay bg-dark" style="--bs-bg-opacity: .7; top:auto; border-top-left-radius: 0; border-top-right-radius: 0;">
                 <p class="card-text">Vorstand im Jahr {{ maijahr.jahr }}</p>
               </div>
             </div>
-          </a>
           {% endif %}
         </div> 
       </div>
