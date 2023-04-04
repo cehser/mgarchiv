@@ -17,7 +17,7 @@
         <div class="d-flex flex-row flex-md-column align-items-center gap-3 gallery">
           {% if maijahr.url_foto_maikoenigspaar %}
             <div data-bs-theme="dark" class="flex-grow-1 card text-center" style="min-width:40%; color: var(--bs-body-color)">
-              <a href="{{ maijahr.url_foto_maikoenigspaar }}">
+              <a href="{{ maijahr.url_foto_maikoenigspaar }}" class="gallery-link">
                 <img src="{{ maijahr.url_foto_maikoenigspaar }}" class="card-img" style="max-height: 60vh;" title="Maikönigspaar {{ maikoenig }} und {{ maikoenigin }}">
               </a>
               <div class="card-img-overlay bg-dark rounded-bottom"  style="--bs-bg-opacity: .7; top:auto; border-top-left-radius: 0; border-top-right-radius: 0;">
@@ -27,7 +27,7 @@
           {% endif %}
           {% if maijahr.url_vorstandsfoto %}
             <div data-bs-theme="dark" class="flex-grow-1 card text-center" style="min-width:40%; color: var(--bs-body-color)">
-              <a href="{{ maijahr.url_vorstandsfoto }}">
+              <a href="{{ maijahr.url_vorstandsfoto }}" class="gallery-link">
                 <img src="{{ maijahr.url_vorstandsfoto }}" class="card-img" style="max-height: 60vh;" title="Vorstand im Jahr {{ maijahr.jahr }}">
               </a>
               <div class="card-img-overlay bg-dark" style="--bs-bg-opacity: .7; top:auto; border-top-left-radius: 0; border-top-right-radius: 0;">
