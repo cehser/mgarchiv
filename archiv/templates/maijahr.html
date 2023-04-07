@@ -20,8 +20,8 @@
               <a href="{{ maijahr.url_foto_maikoenigspaar }}" class="gallery-link">
                 <img src="{{ maijahr.url_foto_maikoenigspaar }}" class="card-img" style="max-height: 60vh;" title="Maikönigspaar {{ maikoenig }} und {{ maikoenigin }}">
               </a>
-              <div class="card-img-overlay bg-dark rounded-bottom"  style="--bs-bg-opacity: .7; top:auto; border-top-left-radius: 0; border-top-right-radius: 0;">
-                <p class="card-text">Maikönigspaar <a href="/person/{{ maikoenig.id }}">{{ maikoenig }}</a> und <a href="/person/{{ maikoenigin.id }}">{{ maikoenigin }}</a></p>
+              <div class="card-img-overlay bg-dark rounded-bottom"  style="--bs-bg-opacity: .7; top:auto; border-top-left-radius: 0; border-top-right-radius: 0;padding:0.25rem;">
+                <p class="card-text" style="text-overflow: ellipsis; overflow: hidden; -webkit-box-orient: vertical; -webkit-line-clamp: 3; display: -webkit-box;">Maikönigspaar <a href="/person/{{ maikoenig.id }}">{{ maikoenig }}</a> und <a href="/person/{{ maikoenigin.id }}">{{ maikoenigin }}</a></p>
               </div>
             </div>
           {% endif %}
@@ -30,8 +30,8 @@
               <a href="{{ maijahr.url_vorstandsfoto }}" class="gallery-link">
                 <img src="{{ maijahr.url_vorstandsfoto }}" class="card-img" style="max-height: 60vh;" title="Vorstand im Jahr {{ maijahr.jahr }}">
               </a>
-              <div class="card-img-overlay bg-dark" style="--bs-bg-opacity: .7; top:auto; border-top-left-radius: 0; border-top-right-radius: 0;">
-                <p class="card-text">Vorstand im Jahr {{ maijahr.jahr }}</p>
+              <div class="card-img-overlay bg-dark" style="--bs-bg-opacity: .7; top:auto; border-top-left-radius: 0; border-top-right-radius: 0; padding:0.25rem;">
+                <p class="card-text" style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">Vorstand im Jahr {{ maijahr.jahr }}</p>
               </div>
             </div>
           {% endif %}
