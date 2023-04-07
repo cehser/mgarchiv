@@ -1,4 +1,5 @@
 {% extends "_master.html" %}
+{% load popover_jahre %}
 
 {% block title %}
   {{ person }} Archiv Maigesellschaft Derichsweiler
@@ -18,10 +19,14 @@
     </tr></thead>
     <tbody>
       {% for x in aemter %}
-      {% if x.jahre %}
+      {% if x.jahre_str %}
         <tr>
           <td>{{ x.amt }} </td>
-          <td>{{ x.jahre }}</td>
+          <td>
+            <a tabindex="0" class="popover-toggle" data-bs-title="zu Jahren" data-bs-html="true" data-bs-trigger="focus" data-bs-toggle="popover" data-bs-title="Popover title" data-bs-content="{% popover_jahre x.jahre %}">
+              {{ x.jahre_str }} 
+            </a>
+          </td>
         </tr>
         {% endif %}
       {% endfor %}

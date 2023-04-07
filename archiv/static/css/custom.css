@@ -117,3 +117,10 @@ img#schleife {
 [data-bs-theme="dark"] .sl-overlay {
   background-color: #000;
 }
+
+a.popover-toggle {
+  text-decoration: dotted;
+  text-decoration-line: underline;
+  text-decoration-thickness: 5%;
+  color: inherit;
+}

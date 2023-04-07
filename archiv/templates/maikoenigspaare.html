@@ -17,7 +17,7 @@
     <tbody>
       {% for x in maikoenigspaare %}
         <tr>
-          <td>{{ x.jahr }}</td>
+          <td><a href="/jahr/{{ x.jahr }}">{{ x.jahr }}</a></td>
           <td><a href="/person/{{ x.paar.0.person.id }}">{{ x.paar.0.person }}</a> und <a href="/person/{{ x.paar.1.person.id }}">{{ x.paar.1.person }}</a> </td>
         </tr>
       {% endfor %}

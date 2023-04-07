@@ -10,8 +10,6 @@ from django.db.models import Q
 
 from django.shortcuts import redirect
 
-
-
 # Create your views here.
 def home(request):
   template = loader.get_template('home.html')
@@ -68,7 +66,8 @@ def person(request, id):
     ehrenmitglied_jahre = Maijahr.objects.filter(jahr__gte=person.ehrenmitglied_ab.year).filter(jahr__lte=(person.todestag or datetime.today()).year)
     aemter_maijahre = [x | {'jahre': x['jahre'] if x['amt']  != 'Vorstand' else list(x['jahre']) + list(ehrenmitglied_jahre )} for x in aemter_maijahre]
 
-  aemter = [x | {'jahre': ', '.join(Helpers.list_to_range_strs([jahr.jahr for jahr in x['jahre']]))}  for x in aemter_maijahre]
+  aemter = [x | {'jahre_str': ', '.join(Helpers.list_to_range_strs([jahr.jahr for jahr in x['jahre']]))
+                 , 'jahre': x['jahre']}  for x in aemter_maijahre]
 
   template = loader.get_template('person.html')
   context = {
@@ -98,9 +97,9 @@ def vorsitzende(request):
   vosis = Aemter.objects.filter(amt='VS').filter(maijahr__gte='1927').order_by('person_id', 'maijahr_id')
   vosis=[{'person': person, 'jahre':list(aemter)} for person, aemter in groupby(vosis, lambda x: x.person)]
 
-  vosis=[{'person': p['person'], 'jahre':p['jahre'], 'jahre_str':', '.join(Helpers.ranges_to_strs(Helpers.to_ranges([x.maijahr.jahr for x in list(p['jahre'])])))} for p in vosis]
+  vosis=[{'person': p['person'], 'jahre':[x.maijahr for x in list(p['jahre'])], 'jahre_str':', '.join(Helpers.ranges_to_strs(Helpers.to_ranges([x.maijahr.jahr for x in list(p['jahre'])])))} for p in vosis]
 
-  vosis.sort(key= lambda x:x['jahre'][0].maijahr_id )
+  vosis.sort(key= lambda x:x['jahre'][0].jahr )
 
   template = loader.get_template('vorsitzende.html')
   context = {
