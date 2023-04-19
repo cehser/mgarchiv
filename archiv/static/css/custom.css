@@ -126,9 +126,10 @@ a.popover-toggle {
 }
 
 /* Styles für Maijahr */
+
 div.mg-foto-maikoenigspaar {
   min-width:40%; 
-  min-height:60%;
+  min-height:100%;
   flex-grow: 1;
 }
 div.mg-foto-vorstand {
@@ -136,15 +137,14 @@ div.mg-foto-vorstand {
   min-height:60%; 
 }
 
-
 /* Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) { 
   div.mg-foto-maikoenigspaar {
     min-width:100%; 
-    min-height:auto;
+    min-height:initial;
   }
   div.mg-foto-vorstand {
-    min-width:auto; 
-    min-height:auto; 
+    min-width:initial; 
+    min-height:initial; 
   }
 }
