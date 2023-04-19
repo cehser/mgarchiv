@@ -124,3 +124,27 @@ a.popover-toggle {
   text-decoration-thickness: 5%;
   color: inherit;
 }
+
+/* Styles für Maijahr */
+div.mg-foto-maikoenigspaar {
+  min-width:40%; 
+  min-height:60%;
+  flex-grow: 1;
+}
+div.mg-foto-vorstand {
+  min-width:40%; 
+  min-height:60%; 
+}
+
+
+/* Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) { 
+  div.mg-foto-maikoenigspaar {
+    min-width:auto; 
+    min-height:auto;
+  }
+  div.mg-foto-vorstand {
+    min-width:auto; 
+    min-height:auto; 
+  }
+}
