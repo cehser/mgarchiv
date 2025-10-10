@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM python:3-alpine
+FROM python:3.12-alpine
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 ARG DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
